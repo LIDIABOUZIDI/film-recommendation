@@ -6,7 +6,7 @@ from sklearn.decomposition import NMF, TruncatedSVD
 from sklearn.neighbors import NearestNeighbors
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-st.title("🎬 Système de recommandation de films")
+st.title(" Système de recommandation de films")
 
 # Chargement des données
 def load_data():
@@ -30,7 +30,7 @@ def get_all_genres(df):
 
 # Interface utilisateur
 if df is not None:
-    st.header("🔍 Sélectionnez vos préférences de films")
+    st.header(" Sélectionnez vos préférences de films")
     preferences = []
     all_genres = get_all_genres(df)
     film_choices = df['title'].unique().tolist()
@@ -50,7 +50,7 @@ if df is not None:
             selected_films.append(film_name)
 
         rec_type = st.selectbox("Type de recommandation", ["NMF", "SVD", "KNN", "Contenu"], key="rec_type")
-        submit = st.form_submit_button("💾 Valider")
+        submit = st.form_submit_button(" Valider")
 
     if submit:
         if all(film for film, genre, rating in preferences):
@@ -109,7 +109,7 @@ if df is not None:
             recommended_movies = recommended_movies.drop_duplicates(subset=['title'])
             recommended_movies['Score'] = recommended_movies['Score'].clip(lower=0).round(4)
 
-            st.header(f"🎯 Recommandations - {rec_type}")
+            st.header(f" Recommandations - {rec_type}")
             st.table(recommended_movies)
         else:
             st.warning("Veuillez remplir tous les champs avant de valider.")
